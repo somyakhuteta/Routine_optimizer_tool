@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="panel glass">
+    <h2>Search</h2>
+    <form method="get" action="{{ url_for('unified_search') }}" style="display:flex; gap:8px;">
+      <input name="q" value="{{ q }}" placeholder="Search tasks, notes, budgets..." style="flex:1; padding:10px; border-radius:10px;">
+      <button class="pill">Search</button>
+    </form>
+
+    <h3 style="margin-top:12px;">Tasks</h3>
+    <ul>
+      {% for t in results.tasks %}
+        <li><strong>{{ t.title }}</strong> — {{ t.due or '—' }}</li>
+      {% else %}<li class="muted">No tasks</li>{% endfor %}
+    </ul>
+
+    <h3>Notes</h3>
+    <ul>
+      {% for n in results.notes %}
+        <li><strong>{{ n.title }}</strong> — {{ n.timestamp }}</li>
+      {% else %}<li class="muted">No notes</li>{% endfor %}
+    </ul>
+
+    <h3>Budgets</h3>
+    <ul>
+      {% for b in results.budgets %}
+        <li>{{ b.category }} — ₹{{ b.amount }} — {{ b.timestamp }}</li>
+      {% else %}<li class="muted">No budgets</li>{% endfor %}
+    </ul>
+  </div>
+{% endblock %}

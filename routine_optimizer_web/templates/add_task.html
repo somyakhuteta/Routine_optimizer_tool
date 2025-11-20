@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="panel glass">
+    <h2>Add Task</h2>
+    <form method="post" class="form-grid">
+      <label>Title</label>
+      <input name="title" required placeholder="Short title">
+
+      <label>Description</label>
+      <textarea name="description" rows="5" placeholder="Details about the task..."></textarea>
+
+      <label>Priority (1-5)</label>
+      <input name="priority" type="number" min="1" max="5" value="3">
+
+      <label>Duration (minutes)</label>
+      <input name="duration" type="number" value="30">
+
+      <label>Due (YYYY-MM-DD HH:MM)</label>
+      <input name="due" placeholder="2025-11-19 14:30">
+
+      <label>Tags (comma separated)</label>
+      <input name="tags" placeholder="study, urgent">
+
+      <label>Link to existing note (optional)</label>
+      <select name="linked_note">
+        <option value="">— none —</option>
+        {% for n in notes %}
+          <option value="{{ n.id }}">{{ n.title }} — {{ n.timestamp }}</option>
+        {% endfor %}
+      </select>
+
+      <label>Link to existing budget (optional)</label>
+      <select name="linked_budget">
+        <option value="">— none —</option>
+        {% for b in budgets %}
+          <option value="{{ b.id }}">{{ b.category }} — ₹{{ b.amount }} — {{ b.timestamp }}</option>
+        {% endfor %}
+      </select>
+
+      <div></div>
+      <button class="big-cta" type="submit">Save Task</button>
+    </form>
+  </div>
+{% endblock %}

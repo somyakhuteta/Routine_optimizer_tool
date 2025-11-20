@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Welcome to Routine Optimizer</h1>
+  <p>A focused planner with tasks, habits, budget tracking, calendar, charts and more.</p>
+  <div class="cards">
+    <a class="card" href="{{ url_for('tasks') }}">Manage Tasks</a>
+    <a class="card" href="{{ url_for('budget') }}">Budget & Charts</a>
+    <a class="card" href="{{ url_for('habits') }}">Habits & Weekly Report</a>
+    <a class="card" href="{{ url_for('calendar_view') }}">Calendar</a>
+  </div>
+{% endblock %}

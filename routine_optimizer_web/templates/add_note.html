@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="panel glass">
+    <h2>Add Note</h2>
+    <form method="post" class="form-grid">
+      <label>Title</label>
+      <input name="title" required placeholder="Note title">
+
+      <label>Content</label>
+      <textarea name="content" rows="6" placeholder="Write your note here..." required></textarea>
+
+      <label>Tags (comma separated)</label>
+      <input name="tags" placeholder="ideas, research">
+
+      <div></div>
+      <button class="big-cta" type="submit">Save Note</button>
+    </form>
+  </div>
+{% endblock %}

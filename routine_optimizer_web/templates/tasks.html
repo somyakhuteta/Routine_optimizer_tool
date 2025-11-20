@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="row top-row">
+    <h2>Tasks</h2>
+    <div class="right">
+      <form class="search" method="get" action="{{ url_for('tasks') }}">
+        <input name="q" placeholder="Search tasks..." value="{{ q or '' }}" aria-label="Search tasks">
+      </form>
+      <a class="btn large" href="{{ url_for('add_task') }}">+ Add Task</a>
+    </div>
+  </div>
+
+  <div class="cards-list">
+    {% for t in tasks %}
+      <article class="task-card glass {% if t.completed %}done{% endif %}">
+        <div class="task-row">
+          <div class="left">
+            <div class="task-title">{{ t.title }}</div>
+            <div class="muted small">{{ t.description or 'No description' }}</div>
+            {% if t.linked_note %}
+              <div class="muted small">🔗 Note: 
+                {% set note = (notes | selectattr('id','equalto', t.linked_note) | list).0 %}
+                {% if note %} <a href="{{ url_for('notes') }}#note-{{ note.id }}">{{ note.title }}</a> {% else %} (missing) {% endif %}
+              </div>
+            {% endif %}
+            {% if t.linked_budget %}
+              <div class="muted small">💸 Budget: 
+                {% set bud = (budgets | selectattr('id','equalto', t.linked_budget) | list).0 %}
+                {% if bud %} {{ bud.category }} - ₹{{ bud.amount }} {% else %} (missing) {% endif %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="right small-meta">
+            <div class="meta">Pr: {{ t.priority }} • {{ t.duration }}m</div>
+            <div class="meta">Due: {{ t.due or '—' }}</div>
+            <div class="tag-list">{{ ', '.join(t.tags) if t.tags else '' }}</div>
+          </div>
+        </div>
+
+        <div class="task-actions">
+          <a class="pill" href="{{ url_for('toggle_task', tid=t.id) }}">{{ 'Undo' if t.completed else 'Done' }}</a>
+          <a class="pill" href="{{ url_for('edit_task', tid=t.id) }}">Edit</a>
+          <a class="pill danger" href="{{ url_for('delete_task', tid=t.id) }}" onclick="return confirm('Delete task?')">Delete</a>
+        </div>
+      </article>
+    {% else %}
+      <div class="panel glass empty">No tasks yet — add one to get started.</div>
+    {% endfor %}
+  </div>
+{% endblock %}

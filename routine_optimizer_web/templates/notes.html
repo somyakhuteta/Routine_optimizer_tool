@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Notes</h2>
+  <a class="btn" href="{{ url_for('add_note') }}">+ Add Note</a>
+  <table class="data">
+    <thead><tr><th>Title</th><th>Content</th><th>Tags</th><th>Added</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for n in notes %}
+      <tr>
+        <td>{{ n.title }}</td>
+        <td>{{ n.content }}</td>
+        <td>{{ ', '.join(n.tags) if n.tags else '—' }}</td>
+        <td>{{ n.timestamp }}</td>
+        <td><a href="{{ url_for('delete_note', nid=n.id) }}" onclick="return confirm('Delete note?')">Delete</a></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5">No notes yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

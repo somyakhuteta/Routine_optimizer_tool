@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="panel glass">
+    <h2>Add Habit</h2>
+    <form method="post" class="form-grid">
+      <label>Habit name</label>
+      <input name="name" required placeholder="e.g., Daily reading">
+
+      <label>Target times per week</label>
+      <input name="target" type="number" value="3" min="1">
+
+      <label>Starting streak (optional)</label>
+      <input name="streak" type="number" value="0" min="0">
+
+      <div></div>
+      <button class="big-cta" type="submit">Add Habit</button>
+    </form>
+  </div>
+{% endblock %}

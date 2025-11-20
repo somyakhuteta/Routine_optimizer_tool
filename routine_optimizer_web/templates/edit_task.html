@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Edit Task</h2>
+  <form method="post">
+    <label>Title</label>
+    <input name="title" value="{{ task.title }}" required>
+    <label>Description</label>
+    <textarea name="description">{{ task.description }}</textarea>
+    <label>Priority (1-5)</label>
+    <input name="priority" type="number" min="1" max="5" value="{{ task.priority }}">
+    <label>Duration (minutes)</label>
+    <input name="duration" type="number" value="{{ task.duration }}">
+    <label>Due (YYYY-MM-DD HH:MM)</label>
+    <input name="due" value="{{ task.due or '' }}" placeholder="YYYY-MM-DD HH:MM">
+    <label>Tags</label>
+    <input name="tags" value="{{ ', '.join(task.tags) if task.tags else '' }}">
+    <label><input type="checkbox" name="completed" {% if task.completed %}checked{% endif %}> Completed</label>
+    <button type="submit">Update</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="panel glass">
+    <div class="row" style="justify-content:space-between; align-items:center;">
+      <h2>Budget</h2>
+      <div>
+        <a class="btn large" href="{{ url_for('add_budget') }}">+ Add Entry</a>
+        <button id="refreshCharts" class="pill">Refresh Charts</button>
+      </div>
+    </div>
+
+    <div class="charts" style="margin-top:12px;">
+      <canvas id="categoryChart" width="400" height="120"></canvas>
+      <canvas id="monthChart" width="400" height="120"></canvas>
+    </div>
+
+    <h3 style="margin-top:18px;">Entries</h3>
+    <table class="data">
+      <thead><tr><th>Category</th><th>Amount</th><th>Note</th><th>Time</th><th>Action</th></tr></thead>
+      <tbody>
+        {% for b in budgets %}
+        <tr>
+          <td>{{ b.category }}</td>
+          <td>₹{{ "%.2f"|format(b.amount) }}</td>
+          <td>{{ b.note }}</td>
+          <td>{{ b.timestamp }}</td>
+          <td><a href="{{ url_for('delete_budget', bid=b.id) }}" class="pill danger" onclick="return confirm('Delete?')">Delete</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">No budget entries.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+<script>
+function renderBudgetCharts() {
+  fetch('{{ url_for("api_budget_summary") }}')
+    .then(r => r.json())
+    .then(data => {
+      const catLabels = Object.keys(data.categories);
+      const catValues = Object.values(data.categories);
+      const monthLabels = Object.keys(data.months);
+      const monthValues = Object.values(data.months);
+
+      const ctx1 = document.getElementById('categoryChart').getContext('2d');
+      if (window._catChart) window._catChart.destroy();
+      window._catChart = new Chart(ctx1, {
+        type: 'pie',
+        data: { labels: catLabels, datasets: [{ data: catValues }] },
+        options: { responsive: true }
+      });
+
+      const ctx2 = document.getElementById('monthChart').getContext('2d');
+      if (window._monthChart) window._monthChart.destroy();
+      window._monthChart = new Chart(ctx2, {
+        type: 'bar',
+        data: { labels: monthLabels, datasets: [{ label: 'Amount', data: monthValues }] },
+        options: { responsive: true }
+      });
+    });
+}
+
+document.getElementById('refreshCharts').addEventListener('click', function(e){
+  e.preventDefault();
+  renderBudgetCharts();
+});
+
+// initial render
+renderBudgetCharts();
+</script>
+{% endblock %}

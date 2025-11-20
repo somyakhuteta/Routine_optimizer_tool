@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Habits & Weekly Report</h2>
+  <a class="btn" href="{{ url_for('add_habit') }}">+ Add Habit</a>
+
+  <table class="data">
+    <thead><tr><th>Habit</th><th>Target /week</th><th>Streak</th><th>Last 7 days</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for item in report %}
+      <tr>
+        <td>{{ item.habit.name }}</td>
+        <td>{{ item.habit.target_per_week }}</td>
+        <td>{{ item.habit.streak }}</td>
+        <td>{{ item.last7 }}</td>
+        <td><a href="{{ url_for('habit_done', hid=item.habit.id) }}">Mark Done</a></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5">No habits yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

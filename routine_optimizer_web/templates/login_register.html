@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="panel glass auth-panel">
+    {% if mode == 'register' %}
+      <h2>Create account</h2>
+    {% else %}
+      <h2>Welcome back</h2>
+    {% endif %}
+    <form method="post" class="form-grid">
+      <label>Username</label>
+      <input name="username" required placeholder="username">
+
+      <label>Password</label>
+      <input name="password" type="password" required placeholder="password">
+
+      <div></div>
+      <button class="big-cta" type="submit">{{ 'Register' if mode=='register' else 'Login' }}</button>
+    </form>
+    <p class="muted small" style="margin-top:12px;">
+      {% if mode=='register' %}
+        Already have an account? <a href="{{ url_for('login') }}">Login</a>
+      {% else %}
+        Need an account? <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </p>
+  </div>
+{% endblock %}

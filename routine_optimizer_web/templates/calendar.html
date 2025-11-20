@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="panel glass">
+  <div class="calendar-header">
+    <h2>Calendar</h2>
+    <div class="legend">
+      <span class="legend-item"><span class="dot task-dot"></span> Task</span>
+      <span class="legend-item"><span class="dot budget-dot"></span> Budget</span>
+      <span class="legend-item"><span class="dot note-dot"></span> Note</span>
+    </div>
+  </div>
+
+  <div id="calendar"></div>
+  <div id="calendarMessage" class="muted small" style="margin-top:12px;">Tip: Click a day to add a quick event or drag an event to reschedule.</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const calendarEl = document.getElementById('calendar');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    selectable: true,
+    editable: true,
+    height: 'auto',
+    headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,timeGridDay' },
+    events: '/api/events',
+    eventDidMount: function(info) {
+      // style events by type
+      const type = info.event.extendedProps.type;
+      if(type === 'budget') info.el.style.background = 'linear-gradient(90deg,#ffd166,#ff7b8f)';
+      if(type === 'task') info.el.style.background = 'linear-gradient(90deg,#6fa8ff,#7bd389)';
+      if(type === 'note') info.el.style.background = 'linear-gradient(90deg,#c27cff,#ffd166)';
+      // ensure text contrast
+      info.el.style.color = '#071226';
+      info.el.style.border = 'none';
+    },
+
+    dateClick: function(info) {
+      const title = prompt("Event title (leave blank to cancel):");
+      if (!title) return;
+      const startStr = info.dateStr + 'T09:00:00';
+      fetch('/api/events', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ title: title, start: startStr })
+      }).then(r=>r.json()).then(()=>calendar.refetchEvents()).catch(()=>alert("Failed to create event"));
+    },
+
+    eventDrop: function(info) {
+      const ev = info.event;
+      fetch('/api/events/' + ev.id, {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ start: ev.start.toISOString().slice(0,19), end: ev.end ? ev.end.toISOString().slice(0,19) : null })
+      }).then(r=>{ if(!r.ok) throw new Error(); calendar.refetchEvents() }).catch(()=>{ alert("Update failed"); info.revert();});
+    },
+
+    eventResize: function(info) {
+      const ev = info.event;
+      fetch('/api/events/' + ev.id, {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ start: ev.start.toISOString().slice(0,19), end: ev.end ? ev.end.toISOString().slice(0,19) : null })
+      }).then(r=>{ if(!r.ok) throw new Error(); calendar.refetchEvents() }).catch(()=>{ alert("Resize failed"); info.revert();});
+    },
+
+    eventClick: function(info) {
+      const ev = info.event;
+      // show details modal-like prompt
+      let txt = `${ev.title}\n\nType: ${ev.extendedProps.type || 'task'}`;
+      if(ev.extendedProps.type === 'task') {
+        txt += `\nDuration: ${ev.extendedProps.duration || '—'} min`;
+      }
+      txt += `\n\nPress OK to edit title, or type DELETE to remove.`;
+      const action = prompt(txt, ev.title);
+      if (action === null) return;
+      if (action.trim().toUpperCase() === "DELETE") {
+        if (confirm("Delete this event?")) {
+          fetch('/api/events/' + ev.id, { method: 'DELETE' }).then(()=>calendar.refetchEvents()).catch(()=>alert("Delete failed"));
+        }
+        return;
+      }
+      fetch('/api/events/' + ev.id, {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ title: action })
+      }).then(r=>{ if(!r.ok) throw new Error("update failed"); calendar.refetchEvents() }).catch(()=>alert("Update failed"));
+    }
+  });
+  calendar.render();
+});
+</script>
+{% endblock %}

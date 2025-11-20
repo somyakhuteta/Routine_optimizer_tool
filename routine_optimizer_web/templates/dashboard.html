@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="page-grid">
+    <section class="panel glass hero">
+      <h1>Welcome back, <span class="accent">{{ session.get('username') }}</span></h1>
+      <p class="muted">Focus on what matters — your day is organized.</p>
+      <div class="hero-actions">
+        <a class="big-cta" href="{{ url_for('tasks') }}">View Tasks</a>
+        <a class="big-cta ghost" href="{{ url_for('calendar_view') }}">Open Calendar</a>
+      </div>
+    </section>
+
+    <section class="panel glass stats">
+      <div class="stat">
+        <div class="stat-num">{{ counts.tasks_total }}</div>
+        <div class="stat-label">Total Tasks</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">{{ counts.tasks_pending }}</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">{{ counts.budgets_count }}</div>
+        <div class="stat-label">Budget Entries</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">{{ counts.habits_count }}</div>
+        <div class="stat-label">Habits</div>
+      </div>
+    </section>
+
+    <section class="panel glass">
+      <h3>Budget (this month)</h3>
+      <canvas id="dashBudget" height="140"></canvas>
+    </section>
+
+    <section class="panel glass">
+      <h3>Habits — last 7 days</h3>
+      <canvas id="dashHabits" height="140"></canvas>
+      <p class="muted small">Open Habits page for detailed per-habit report.</p>
+    </section>
+  </div>
+
+<script>
+async function loadDashboard() {
+  const resp = await fetch("{{ url_for('api_budget_summary') }}");
+  const data = await resp.json();
+  const catLabels = Object.keys(data.categories);
+  const catValues = Object.values(data.categories);
+
+  const ctx = document.getElementById('dashBudget').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: catLabels,
+      datasets: [{ data: catValues, backgroundColor: ['#7bd389','#6fa8ff','#ffd166','#c27cff','#ff7b8f'] }]
+    },
+    options: { plugins:{legend:{position:'bottom'}}, responsive:true }
+  });
+
+  // placeholder habit chart (recommended: create /api/habits_summary for real)
+  const ctx2 = document.getElementById('dashHabits').getContext('2d');
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+      datasets: [{ label: 'Hits', data: [0,0,0,0,0,0,0] }]
+    },
+    options: { responsive:true, plugins:{legend:{display:false}} }
+  });
+}
+loadDashboard();
+</script>
+{% endblock %}

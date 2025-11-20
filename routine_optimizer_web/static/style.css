@@ -1,0 +1,169 @@
+/* Glassmorphism theme — copy this file as static/style.css */
+/* Font fallbacks; you can include Google Fonts if you prefer */
+:root{
+  --bg1: linear-gradient(120deg,#e6f3ff 0%, #f7e6ff 50%, #fff6e8 100%);
+  --glass: rgba(255,255,255,0.55);
+  --glass-strong: rgba(255,255,255,0.75);
+  --card-radius: 16px;
+  --accent: #7bd389;
+  --accent2: #6fa8ff;
+  --muted: #556677;
+  --glass-border: rgba(255,255,255,0.35);
+  --shadow: 0 10px 30px rgba(15,20,30,0.08);
+  --glass-blur: 10px;
+  --text: #0b1b2b;
+}
+
+/* dark mode overrides */
+body.dark { 
+  --glass: rgba(12,18,28,0.42);
+  --glass-strong: rgba(12,18,28,0.65);
+  --bg1: linear-gradient(180deg,#071226 0%,#0b1522 100%);
+  --text: #e6f0f8;
+  --muted: #9fb2c9;
+  --glass-border: rgba(255,255,255,0.04);
+  --shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* textured canvas background using layered radial-gradients — no external image required */
+.canvas-bg {
+  position: fixed; inset: 0; z-index: -2;
+  background: var(--bg1);
+  background-attachment: fixed;
+  filter: saturate(1.05);
+}
+.canvas-bg::after{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px;
+  mix-blend-mode: overlay;
+  opacity: .55;
+}
+
+/* page layout */
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.container{ max-width:1150px; margin:28px auto; padding:18px; }
+
+/* glass panel */
+.glass {
+  background: linear-gradient(130deg, rgba(255,255,255,0.45), rgba(255,255,255,0.32));
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+/* topbar */
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 22px; margin:18px auto; max-width:1200px; border-radius:20px; }
+.brand a{ font-size:20px; font-weight:700; color:var(--text); text-decoration:none; letter-spacing:0.2px; }
+.brand .accent { color:var(--accent2); margin-left:6px; font-weight:800; }
+.nav { display:flex; gap:12px; align-items:center; }
+.nav-link { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:10px; transition: all .18s ease; font-weight:600; }
+.nav-link:hover { transform:translateY(-3px); color:var(--text); box-shadow:0 6px 18px rgba(11,27,43,0.06); background: rgba(255,255,255,0.12); }
+
+/* right actions */
+.right-actions{ display:flex; gap:12px; align-items:center; }
+.icon-btn{ background:transparent; border:0; font-size:18px; padding:8px; border-radius:10px; cursor:pointer; transition:transform .12s ease; }
+.icon-btn:hover{ transform:scale(1.06); background: rgba(255,255,255,0.06); }
+.user-pill{ display:flex; gap:8px; align-items:center; padding:6px 8px; border-radius:12px; }
+.user-name{ font-weight:700; margin-right:6px; }
+.small-link{ color:var(--muted); text-decoration:none; font-size:13px; }
+
+/* cards grid and hero */
+.page-grid{ display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+.panel.hero{ grid-column: 1 / -1; display:flex; flex-direction:column; gap:8px; padding:28px; }
+.hero-actions{ display:flex; gap:12px; margin-top:10px; }
+.big-cta{ background:linear-gradient(90deg,var(--accent),var(--accent2)); color:white; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:700; box-shadow:0 8px 22px rgba(74,144,226,0.14); transition:transform .12s, box-shadow .12s; display:inline-block; }
+.big-cta:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(74,144,226,0.18); }
+
+/* stats */
+.stats{ display:grid; grid-template-columns: repeat(2,1fr); gap:12px; padding:12px; }
+.stat{ padding:14px; border-radius:12px; text-align:center; background: linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.30)); }
+.stat-num{ font-size:22px; font-weight:800; color:var(--text); }
+.stat-label{ color:var(--muted); margin-top:4px; }
+
+/* tasks list */
+.top-row{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.search input{ padding:10px 12px; border-radius:12px; border:1px solid rgba(11,27,43,0.06); width:240px; }
+.btn.large{ padding:10px 14px; border-radius:12px; background:linear-gradient(90deg,var(--accent),var(--accent2)); color:white; text-decoration:none; display:inline-block; box-shadow:0 8px 22px rgba(0,0,0,0.06); transition:transform .12s; }
+.btn.large:hover{ transform:translateY(-4px); }
+
+/* task card */
+.cards-list{ display:grid; gap:12px; }
+.task-card{ display:flex; flex-direction:column; gap:10px; padding:14px; border-radius:14px; transition:transform .12s; }
+.task-card:hover{ transform:translateY(-6px); }
+.task-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.task-title{ font-size:16px; font-weight:700; margin-bottom:6px; }
+.small-meta{ text-align:right; color:var(--muted); font-size:13px; }
+
+/* pill actions (large click area) */
+.task-actions{ display:flex; gap:10px; }
+.pill{ padding:8px 12px; border-radius:999px; background: rgba(255,255,255,0.08); text-decoration:none; color:var(--text); border:1px solid rgba(255,255,255,0.06); transition: transform .08s; }
+.pill:hover{ transform:translateY(-3px); background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); }
+.pill.danger{ background: linear-gradient(90deg,#ffd6d6,#ffbcbc); color:#6b0707; }
+
+/* calendar panel */
+#calendar { border-radius:12px; overflow:hidden; padding:8px; background:transparent; }
+.fc .fc-toolbar-title { font-weight:700; color:var(--text); }
+
+/* footer */
+.footer{ margin-top:28px; display:flex; justify-content:space-between; align-items:center; padding:12px 18px; border-radius:12px; }
+
+/* utility */
+.muted{ color:var(--muted); }
+.small{ font-size:13px; }
+.empty{ text-align:center; padding:30px; }
+
+/* responsive */
+@media (max-width:980px){
+  .page-grid{ grid-template-columns: 1fr; }
+  .nav { display:none; }
+  .container { padding:12px; }
+  .task-row{ flex-direction:column; align-items:flex-start; gap:8px; }
+  .right-actions{ gap:8px; }
+}
+/* ---------- Additional polished UI rules (paste at end of style.css) ---------- */
+
+/* form grid and nice inputs */
+.form-grid { display:grid; grid-template-columns: 1fr 1fr; gap:12px 18px; align-items:start; }
+.form-grid label { font-weight:600; color:var(--muted); margin-bottom:6px; }
+.form-grid input, .form-grid textarea, .form-grid select { padding:12px 14px; border-radius:12px; border:1px solid rgba(11,27,43,0.06); background: rgba(255,255,255,0.92); width:100%; box-shadow:none; font-size:15px; }
+.form-grid textarea { resize:vertical; grid-column: 1 / -1; min-height:110px; }
+.auth-panel .form-grid textarea { min-height:80px; }
+
+/* big CTA & pill consistent */
+.big-cta{ background:linear-gradient(90deg,var(--accent),var(--accent2)); color:white; padding:12px 18px; border-radius:12px; text-decoration:none; font-weight:700; box-shadow:0 8px 22px rgba(74,144,226,0.14); transition:transform .12s, box-shadow .12s; display:inline-block; border:none; cursor:pointer; }
+.big-cta:hover{ transform:translateY(-3px); box-shadow:0 12px 30px rgba(74,144,226,0.18); }
+
+/* pill small buttons used in rows */
+.pill{ padding:8px 12px; border-radius:999px; background: rgba(255,255,255,0.08); text-decoration:none; color:var(--text); border:1px solid rgba(255,255,255,0.06); transition: transform .08s; cursor:pointer; }
+.pill:hover{ transform:translateY(-3px); background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)); }
+
+/* legend for calendar */
+.legend { display:flex; gap:12px; align-items:center; margin-left:auto; }
+.legend-item { display:flex; gap:8px; align-items:center; font-size:13px; color:var(--muted); }
+.dot{ width:12px; height:12px; border-radius:50%; display:inline-block; border:1px solid rgba(0,0,0,0.05); box-shadow:0 2px 6px rgba(11,27,43,0.06); }
+.task-dot{ background: linear-gradient(90deg,#6fa8ff,#7bd389); }
+.budget-dot{ background: linear-gradient(90deg,#ffd166,#ff7b8f); }
+.note-dot{ background: linear-gradient(90deg,#c27cff,#ffd166); }
+
+/* calendar: better contrast in dark mode */
+body.dark .fc .fc-daygrid-day-number { color: #cfe6ff; }
+body.dark .fc .fc-event { color:#071226; border:none; }
+body.dark .fc { background: transparent; }
+
+/* make top quick-add input look consistent */
+.quick-add-form input { padding:10px 12px; border-radius:10px; border:1px solid rgba(11,27,43,0.06); }
+.quick-add-form .pill { vertical-align:middle; }
+
+/* increase hit area for buttons & selects */
+input, textarea, select, button, a.pill, .big-cta { touch-action: manipulation; }
+
+/* responsive forms */
+@media (max-width:880px){
+  .form-grid { grid-template-columns: 1fr; }
+  .legend { margin-top:12px; }
+}

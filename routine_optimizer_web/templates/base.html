@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Routine Optimizer — Glass UI</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- FullCalendar -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Main JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+  <!-- Soft textured gradient background -->
+  <div class="canvas-bg"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar glass">
+    <div class="brand">
+      <a href="{{ url_for('index') }}">Routine<span class="accent">Optimizer</span></a>
+    </div>
+
+    <nav class="nav">
+      <a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a>
+      <a href="{{ url_for('tasks') }}" class="nav-link">Tasks</a>
+      <a href="{{ url_for('calendar_view') }}" class="nav-link">Calendar</a>
+      <a href="{{ url_for('notes') }}" class="nav-link">Notes</a>
+      <a href="{{ url_for('budget') }}" class="nav-link">Budget</a>
+      <a href="{{ url_for('habits') }}" class="nav-link">Habits</a>
+      <a href="{{ url_for('unified_search') }}" class="nav-link">Search</a>
+    </nav>
+
+    <!-- Quick Add Mini Form -->
+    <div class="quick-add">
+      <form method="post" action="{{ url_for('add_task') }}" class="quick-add-form">
+        <input 
+          name="title" 
+          placeholder="Quick add event / meeting…" 
+          class="quick-input"
+        >
+        <button class="pill" type="submit">Add</button>
+      </form>
+    </div>
+
+    <!-- Dark Mode + User -->
+    <div class="right-actions">
+
+      <button id="dark-toggle" class="icon-btn" aria-label="Toggle dark mode">
+        🌙
+      </button>
+
+      {% if session.get('username') %}
+        <div class="user-pill glass">
+          <span class="user-emoji">👋</span>
+          <span class="user-name">{{ session.get('username') }}</span>
+          <a class="small-link" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+      {% else %}
+        <a class="cta" href="{{ url_for('login') }}">Login</a>
+        <a class="cta ghost" href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes">
+          {% for cat, msg in messages %}
+            <div class="flash {{ cat }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer glass">
+    <div>© {{ (now()).year if (now is defined) else '' }} Routine Optimizer</div>
+    <div class="footer-links">
+      <a href="{{ url_for('export_ics') }}">Export .ics Calendar</a>
+    </div>
+  </footer>
+
+  <script>
+    if (window.initDarkMode) window.initDarkMode();
+  </script>
+</body>
+</html>
