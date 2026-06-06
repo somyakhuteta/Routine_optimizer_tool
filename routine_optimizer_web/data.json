@@ -1,0 +1,323 @@
+{
+  "users": [
+    {
+      "id": "edaa09ac9f1342558d03c86647b76228",
+      "username": "randi",
+      "pw": "scrypt:32768:8:1$vjpmXpJVgbz2ansF$1101e2a46edf7e8038c480c717dad11b2623d3604fda4e3d2c5cd605982cb94090f2096f94316b68e42c99289bcfd43c390a30599f2f1088b7e943ec97d24413"
+    },
+    {
+      "id": "5762ea2f9267436091ebcc0e0ea58c74",
+      "username": "rishabh_gupta_08",
+      "pw": "scrypt:32768:8:1$PVC7Tlv0Ygh0Tigm$ec153e74057d5119f66e0ab1ba7e4ab7109004290450d9d1de7eac46798374653211934e6d9858c2244c7415dee4b0abf89dac3afe0a7d5497c775f548e64fa7"
+    },
+    {
+      "id": "965a101da8fd4cbb9cdb765705d08292",
+      "username": "sk",
+      "pw": "scrypt:32768:8:1$gnkL4fuDG3E8mGJx$94d26d3f008ceefaed5b62f2bdcd9e92965465faa5202e2756b220f724ca958b7a57e411f81fcbcd4036fac9e2e3300b17d8baa6a52ea66ac5cd0850ab4c7fbc",
+      "prefs": {}
+    },
+    {
+      "id": "89bb6ce68c0a49bfab335a784dbfda15",
+      "username": "zeus",
+      "pw": "scrypt:32768:8:1$ZiFdIYnvSI2rlvTo$d38e6551ec7cdd0f595f0fdb6d6df7bd639de38376401cbf6e39ffd1747fc08ec962b339f38c7e282a93e0f5fe1c252cae9d7280d3db7bf0fdfbb11cb9e9a443",
+      "prefs": {}
+    },
+    {
+      "id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "username": "user1",
+      "pw": "scrypt:32768:8:1$9sZLtIpEOQaptoY0$51ee3defb10b8b6c8db1b9d43aecad072c609a11ea9851aa92b2c6e4db4cfd4fcf461167615d8132f31c4074f2a9137cbc9fac484c9b6315e1298da0c7cc837d",
+      "prefs": {}
+    },
+    {
+      "id": "475f6571816b43ae9ed702e0e2a64214",
+      "username": "somyakhuteta",
+      "pw": "scrypt:32768:8:1$TktFWGbcdGGFrMGg$849130761cf38707fcdb372dd65c3e9da63bbf8efcd52c3f3573e216895f016ffdd3defc282dc17578bbe5445e587a3e56c7a7406c615dbf2dfded956ec2a919",
+      "prefs": {}
+    }
+  ],
+  "tasks": [
+    {
+      "id": "67682d5d420147eea88dc3e1de950764",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "title": "meow",
+      "description": "",
+      "priority": 3,
+      "duration": 30,
+      "due": null,
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-11-19 13:45"
+    },
+    {
+      "id": "c350f699b3d84996adf9e69334ac14ca",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "title": "damnnnn",
+      "description": "",
+      "priority": 1,
+      "duration": 30,
+      "due": null,
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-11-19 13:46"
+    },
+    {
+      "id": "5579884b32f4444daedebdf5e3ebb5ee",
+      "user_id": "965a101da8fd4cbb9cdb765705d08292",
+      "title": "gym",
+      "description": "",
+      "priority": 3,
+      "duration": 30,
+      "due": null,
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-11-19 21:33",
+      "linked_note": null,
+      "linked_budget": null
+    },
+    {
+      "id": "6ac41d079f0840dc8fb122b93d23171b",
+      "user_id": "965a101da8fd4cbb9cdb765705d08292",
+      "title": "gym at 8",
+      "description": "",
+      "priority": 3,
+      "duration": 30,
+      "due": null,
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-11-19 21:34",
+      "linked_note": null,
+      "linked_budget": null
+    },
+    {
+      "id": "524d5e25134c440cbe388f268fe5dc9a",
+      "user_id": "965a101da8fd4cbb9cdb765705d08292",
+      "title": "gym 800000",
+      "description": "",
+      "priority": 3,
+      "duration": 30,
+      "due": null,
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-11-19 21:34",
+      "linked_note": null,
+      "linked_budget": null
+    },
+    {
+      "id": "15536a18988946f2966922e6607c5725",
+      "user_id": "965a101da8fd4cbb9cdb765705d08292",
+      "title": "",
+      "description": "",
+      "priority": 3,
+      "duration": 30,
+      "due": null,
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-11-19 22:03",
+      "linked_note": null,
+      "linked_budget": null
+    },
+    {
+      "id": "a401175f943648d9804b02d81d4e5ddf",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "title": "Prepare presentation",
+      "description": "Finalize slides for collage project presentation",
+      "priority": 1,
+      "duration": 45,
+      "due": "2025-12-05 10:00AM",
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-12-04 10:32",
+      "linked_note": null,
+      "linked_budget": null
+    },
+    {
+      "id": "11a69ecf9d16412aa68587d58025d68f",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "title": "Grocery shopping",
+      "description": "Buy veggies, fruits, and basic supplies",
+      "priority": 3,
+      "duration": 30,
+      "due": "2025-12-04 6:00PM",
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-12-04 10:32",
+      "linked_note": null,
+      "linked_budget": null
+    },
+    {
+      "id": "2f0bf9ced66a41348db899ef787efbdc",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "title": "Workout Session",
+      "description": "Complete Shouder and Back routine",
+      "priority": 1,
+      "duration": 90,
+      "due": "2025-12-05 6:00AM",
+      "tags": [],
+      "completed": false,
+      "created_at": "2025-12-04 10:34",
+      "linked_note": null,
+      "linked_budget": null
+    }
+  ],
+  "notes": [
+    {
+      "id": "8fd9fabff30e4f71bbc7ca7406b306e4",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "title": "hf",
+      "content": "hth",
+      "tags": [],
+      "timestamp": "2025-11-19 13:39"
+    },
+    {
+      "id": "663b72c50d554db6b6b19d3fdba8a34e",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "title": "College review notes",
+      "content": "Submit files before friday\r\nAdd flowcharts",
+      "tags": [],
+      "timestamp": "2025-12-04 10:38:18"
+    },
+    {
+      "id": "e2d5642e4a1749a0884b1cbae83e2725",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "title": "Meeting discussion points",
+      "content": "Api integration pending \r\nUi enhancements planned",
+      "tags": [],
+      "timestamp": "2025-12-04 10:39:32"
+    },
+    {
+      "id": "b9471dd1e2244f0889c3725be2dd27e0",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "title": "Study Plans",
+      "content": "Complete Cpp with question\r\nRevise json entries",
+      "tags": [],
+      "timestamp": "2025-12-04 10:40:12"
+    }
+  ],
+  "budgets": [
+    {
+      "id": "3cbbc03e8d3b46be99b03745b931dd6b",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "category": "h",
+      "amount": 500.0,
+      "note": "",
+      "timestamp": "2025-11-19 13:50:14"
+    },
+    {
+      "id": "88f097341e9c4d618600eea4426a8e31",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "category": "t",
+      "amount": 1500.0,
+      "note": "",
+      "timestamp": "2025-11-19 13:50:31"
+    },
+    {
+      "id": "ab2eebc6606f493da518b15469a0a5b0",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "category": "r",
+      "amount": 9000.0,
+      "note": "",
+      "timestamp": "2025-11-19 13:50:49"
+    },
+    {
+      "id": "1c570c97a4664815b8ec5cef6723fae2",
+      "user_id": "edaa09ac9f1342558d03c86647b76228",
+      "category": "travel",
+      "amount": 7000.0,
+      "note": "",
+      "timestamp": "2025-11-19 13:51:07"
+    },
+    {
+      "id": "b839a7a7bd894f72ac48725870f51165",
+      "user_id": "965a101da8fd4cbb9cdb765705d08292",
+      "category": "travel",
+      "amount": 90000.0,
+      "note": "k",
+      "timestamp": "2025-11-19 21:19:42"
+    },
+    {
+      "id": "14c1bec417e24d3cba5be4c5834d7d10",
+      "user_id": "965a101da8fd4cbb9cdb765705d08292",
+      "category": "meow",
+      "amount": 99999.0,
+      "note": "",
+      "timestamp": "2025-11-19 21:41:56"
+    },
+    {
+      "id": "c51320330f7b4899ac8c07bad918aa55",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "category": "Groceries",
+      "amount": 1200.0,
+      "note": "weekly food supply",
+      "timestamp": "2025-12-04 10:34:39"
+    },
+    {
+      "id": "4e9a7c5f770547078f4f368c7862a5dc",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "category": "Travel",
+      "amount": 1000.0,
+      "note": "Cab",
+      "timestamp": "2025-12-04 10:35:18"
+    },
+    {
+      "id": "9d5ad3fa40b2404f94993821ea008df3",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "category": "Entertainment",
+      "amount": 700.0,
+      "note": "",
+      "timestamp": "2025-12-04 10:35:38"
+    },
+    {
+      "id": "efb1925ee5eb490fb1456ece438aa665",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "category": "Protein",
+      "amount": 1500.0,
+      "note": "Completing macros",
+      "timestamp": "2025-12-04 10:36:06"
+    },
+    {
+      "id": "d1f9ac66f4c64529bdd43e578a8bc3e6",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "category": "Health",
+      "amount": 800.0,
+      "note": "routine checkups",
+      "timestamp": "2025-12-04 10:36:25"
+    },
+    {
+      "id": "ed8441f6e2514ab9a01a2721744c2b64",
+      "user_id": "09152cd36c5c43cda712d9c84fa1efc6",
+      "category": "Education",
+      "amount": 1400.0,
+      "note": "Python course fees",
+      "timestamp": "2025-12-04 10:36:55"
+    },
+    {
+      "id": "c6e809a675c548d1a1713b334e4685f8",
+      "user_id": "475f6571816b43ae9ed702e0e2a64214",
+      "category": "Entertainment",
+      "amount": 500.0,
+      "note": "",
+      "timestamp": "2026-04-21 08:47:00"
+    }
+  ],
+  "habits": [
+    {
+      "id": "ae7cf5cf62054be1a2d90158649d0964",
+      "user_id": "0ce18db2ac7340e281858a404ea333ff",
+      "name": "meow",
+      "target_per_week": 3,
+      "streak": 6,
+      "done_dates": [
+        "2025-11-21 09:58:39",
+        "2025-11-21 09:58:41",
+        "2025-11-21 09:58:42",
+        "2025-11-21 09:58:43",
+        "2025-11-21 09:58:44",
+        "2025-11-21 09:58:44"
+      ]
+    }
+  ],
+  "settings": {
+    "pomodoro_minutes": 25,
+    "break_minutes": 5
+  }
+}
